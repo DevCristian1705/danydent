@@ -1,6 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA, LOCALE_ID, NgModule } from "@angular/core";
 import { AppComponent } from "./app.component";
-import { CommonModule } from "@angular/common";
+import { CommonModule, HashLocationStrategy, LocationStrategy } from "@angular/common";
 import { BrowserModule } from "@angular/platform-browser";
 import { ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
@@ -32,6 +32,7 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
     provideFirestore(() => getFirestore())
   ], 
   providers:[
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
     { provide: LOCALE_ID, useValue: 'es' },
   ],
   bootstrap: [AppComponent],
