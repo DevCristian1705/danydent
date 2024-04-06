@@ -1,0 +1,80 @@
+<ng-container [ngSwitch]="type">
+    <ng-container *ngSwitchCase="'Classic'">
+        <button  [ngClass]="typeClass" [disabled]="isDisabled" (click)="onClicked()" >  
+            <div [ngClass]="typeSize">
+                <p class="font-secondary-bold-14  texto-botton">{{ nombreBotton }}</p>  
+            </div>   
+        </button> 
+    </ng-container>
+     
+    <ng-container *ngSwitchCase="'BottonLanding'">
+        <button  [ngClass]="typeClass" (click)="onClicked()" >  
+            <div [ngClass]="typeSize">
+                <p class="font-secondary-bold-14  texto-botton">{{ nombreBotton }}</p>  
+            </div>   
+        </button> 
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'BottonLandingPrimary'">
+        <button  [ngClass]="typeClass" (click)="onClicked()" >  
+            <div [ngClass]="typeSize">
+                <p class="font-secondary-bold-14  texto-botton">{{ nombreBotton }}</p>  
+            </div>   
+        </button> 
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'BottonGoogle'">
+        <button  [ngClass]="typeClass"  (click)="onClicked()"  >  
+            <div [ngClass]="typeSize">
+                <div class="custom-button">
+                    <img [src]="urlimagen" alt="icono del boton" width="20px" height="20px">
+                    <p  class="font-secondary-regular-14 text"> {{ nombreBotton }}  </p>  
+                </div>
+            </div>   
+        </button> 
+      </ng-container>
+
+
+      
+    <ng-container *ngSwitchCase="'BottonIcon'">
+        <button  [ngClass]="typeClass"  (click)="onClicked()"  >  
+            <div [ngClass]="typeSize">
+                <img [src]="urlimagen" alt="icono del boton" width="20px" height="20px"> 
+            </div>   
+        </button> 
+      </ng-container>
+
+      
+
+       
+    <ng-container *ngSwitchCase="'BottonPrimaryBlock'">
+        <button  [ngClass]="typeClass" [disabled]="isDisabled" (click)="onClicked()" >  
+            <div [ngClass]="typeSize">
+                <p class="font-secondary-bold-14 texto-botton">{{ nombreBotton }}</p>  
+            </div>   
+        </button> 
+    </ng-container>
+
+    <ng-container  *ngSwitchCase="'BottonPrimary'">
+        <button [ngClass]="typeClass" [disabled]="isDisabled" (click)="onClicked()">  
+            <div class="show-loading" [ngClass]="typeSize">
+                <p class="font-secondary-bold-16" [ngClass]="{ 'texto-botton' : !loadingdButton,'texto-botton-oculto' : loadingdButton }">
+                    {{ nombreBotton }} 
+                 </p>  
+                 <span *ngIf="loadingdButton" class="spinner spinner--quarter"></span> 
+            </div>   
+        </button> 
+      </ng-container>
+
+    <ng-container *ngSwitchDefault>
+      <button [ngClass]="typeClass" [disabled]="isDisabled" (click)="onClicked()">  
+          <div class="show-loading" [ngClass]="typeSize">
+              <p class="font-secondary-bold-16" [ngClass]="{ 'texto-botton' : !loadingdButton,'texto-botton-oculto' : loadingdButton }">
+                  {{ nombreBotton }} 
+               </p>  
+               <span *ngIf="loadingdButton" class="spinner spinner--quarter"></span> 
+          </div>   
+      </button> 
+    </ng-container>
+  </ng-container>
+  

@@ -1,0 +1,186 @@
+@import '../../../assets/custom/breakpoints.scss';
+
+ 
+.CardExperiencia{   
+	.datos{
+		display: flex;
+		flex-wrap: wrap; 
+		gap: 1.5em; 
+
+		&__logos{
+			box-sizing: border-box;
+			padding: 16px;
+			flex: 1 0 calc(40% - 16px); 
+			border: 1px solid #ddd;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			gap: 0.5em;
+			border-radius: 15px;
+			
+			.ver-mas{
+				display: none;
+			}
+			img{
+				border-radius: 50%;
+			}
+			&:hover{
+				background: gainsboro;
+				border: solid 1px #493a45;
+				border-radius: 10px; 
+				cursor: pointer;
+	
+				.ver-mas{
+					display: flex;
+				}
+			}
+		}
+	}
+}
+
+.CardProyectos{ 
+	.logos{
+		box-sizing: border-box;
+		padding: 16px;
+		flex: 1 0 calc(40% - 16px); 
+		border: 1px solid #ddd;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 0.5em;
+		border-radius: 15px;
+		
+		.ver-mas{
+			display: none;
+		}
+		img{
+			border-radius: 50%;
+		}
+		&:hover{
+			background: gainsboro;
+			border: solid 1px #493a45;
+			border-radius: 10px; 
+			cursor: pointer;
+
+			.ver-mas{
+				display: flex;
+			}
+		}
+	} 
+}
+
+.CardContacto{
+	.info-perfil{
+		margin-left: 2em;
+		display: grid;
+		grid-template-columns: 150px 350px; 
+		gap: 1.5em;
+		justify-content: left;
+		align-items: center;
+		text-align: left;
+
+		@include media-breakpoint("lt-md") { 
+			display: block;
+			width: 100%;
+		}  
+
+	}
+}
+
+
+.CardDevelop{
+ 
+	.imagen-dev{ 
+		height: 210px;
+		border-radius: 50%;
+		width: 210px; 
+		border:  solid 5px #0401bb; 
+		animation: fadeIn 3s forwards;
+
+		@include media-breakpoint("lt-md") { 
+			height: 180px; 
+			width: 180px; 
+		}  
+	}
+}
+
+.card{  
+	display: grid;
+	padding: 1em 2em 3em;
+	justify-content: center;
+	align-items: center;
+	text-align: center; 
+	background: #FFFFFF;
+	box-shadow: 0px 4px 24px rgba(33, 33, 33, 0.5);
+	border-radius: 20px; 
+	width: 850px;  
+
+	@include media-breakpoint("lt-md") {  
+		width: auto;
+		flex-direction: column;
+		text-align: center;
+	} 
+} 
+
+.card--develop{    
+	align-items: center;
+	text-align: center; 
+	background: #FFFFFF; 
+	box-shadow: 2px 5px 30px rgb(25 75 255); 
+	display: flex;
+	justify-content: space-evenly;
+	height: 350px; 
+
+	@include media-breakpoint("lt-md") {  
+		width: -webkit-fill-available; ;
+		display: flex;
+		gap: 3em;
+		align-items: center;
+		justify-content: center;
+	}  
+}
+
+
+.titulo{
+	margin: 1em 0em 2em 1em; 
+	background-color: gainsboro;
+	border-radius: 20px 20px 0 0;
+	padding: 0.3em;
+}
+
+
+.datos{
+	display: flex;
+	flex-wrap: wrap; 
+	gap: 1.5em; 
+}
+
+.datos--centrado{
+	justify-content: center;
+}
+
+
+
+.animationFadeIn{ 
+   animation: fadeIn 3s forwards;
+}
+
+  
+ @keyframes fadeIn {
+
+   0%{
+	 opacity: 0;
+   }
+   
+   50% {
+	 opacity: 0.3;
+   } 
+ 
+   70% {
+	 opacity: 0.6;
+   } 
+   
+   
+ }

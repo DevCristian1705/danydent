@@ -1,0 +1,87 @@
+@import 'breakpoints';
+
+@mixin font-primary($size, $weig, $line) {
+    font-size: $size !important; 
+    font-weight: $weig !important;
+    line-height: $line !important;
+    font-family: "Red Hat Display" !important;
+}
+
+@mixin font-secondary($size, $weig, $line) {
+    font-size: $size !important; 
+    font-weight: $weig !important;
+    line-height: $line !important;
+    font-family: "Nunito" !important;
+}
+
+/* Red Hat */
+.primary-bold{ 
+    @include font-primary(16px, bold, normal);
+}
+.primary-bold-h1{
+    @include font-primary(34px, 700,34px);
+}
+.primary-bold-h2{
+    @include font-primary(26px, 700,30px);
+}
+.primary-bold-h3{
+    @include font-primary(22px, 700,26px);
+}
+.primary-bold-h4{
+    @include font-primary(20px, 700,24px);
+}
+.primary-bold-h5{
+    @include font-primary(18px, 700,22px);
+}
+.primary-bold-h6{
+    @include font-primary(16px, 700,20px);
+}
+/*medium*/
+.primary-medium{
+    @include font-primary(16px, 500, normal); 
+}
+/*regular*/
+.primary-regular{
+    @include font-primary(16px, 400, normal);
+}
+
+
+
+
+/** Nunito */
+.font-secondary-bold{
+    @include font-secondary(16px, 700, normal);
+}
+.font-secondary-bold-24{
+    @include font-secondary(24px, 700,30px);
+}
+.font-secondary-bold-16{
+    @include font-secondary(16px, 700,22px);
+}
+.font-secondary-bold-14{
+    @include font-secondary(14px, 700,20px);
+}
+.font-secondary-bold-12{
+    @include font-secondary(12px, 700, 18px);
+}
+
+/*medium*/
+.font-secondary-medium-26{
+    @include font-secondary(26px, 500,32px);
+}
+/*Regular*/
+.font-secondary-regular-18{
+    @include font-secondary(18px, 400,22px);
+}
+.font-secondary-regular-16{
+    @include font-secondary(16px, 400,22px);
+}
+.font-secondary-regular-14{
+    @include font-secondary(14px, 400,20px);
+}
+.font-secondary-regular-12{
+    @include font-secondary(12px, 400,18px);
+}
+
+
+

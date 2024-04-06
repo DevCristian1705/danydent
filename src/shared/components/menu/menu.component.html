@@ -1,0 +1,22 @@
+<div [ngClass]="type" >    
+    <div class="navigation">   
+        <div class="navigation__menu" >
+            <div  *ngFor="let items of menuArray$ | async">
+                <div class="items-content white">
+                    <div class="items-content__item-menu primary-bold-h6">
+                        <img [src]="items.icon" [alt]="items.alt_icon" width="20" height="20">
+                        <span class="cursor-pointer" (click)="onNavigate(items.router || '')"> {{items.name }}</span>
+                    </div>
+
+                    <div class="items-content__submenu font-secondary-regular-14 cursor-pointer" *ngIf="items.subMenu.length">
+                        <div class="submenu-items">
+                            <div (click)="onNavigate(item.router)"  *ngFor="let item of items.subMenu"> 
+                                <span  class="cursor-pointer"> {{item.name }}</span>
+                            </div>
+                        </div> 
+                    </div>
+                </div> 
+            </div> 
+        </div> 
+    </div> 
+  </div> 

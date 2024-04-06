@@ -1,0 +1,168 @@
+@import '../../../assets/custom/breakpoints.scss';
+
+.SideLanding{
+
+  .content{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    height: 100vh;
+    z-index: 99 !important;
+  }
+
+  .navigation  {
+      position: absolute;
+      right: 0%;
+      text-align: 0;
+      background: linear-gradient(90.51deg, #640AB0 0.39%, #053296 138.52%);
+      width: 343px;
+      z-index: 3 !important; 
+      height: 100vh;
+  }
+
+  .div-closed{
+    margin-bottom: 1em;
+
+    .close-sidebar{
+      text-align: right;
+  
+      &__icon{
+        color: white;
+        font-weight: bold;
+        padding: 0.5em 2em;
+        cursor: pointer;
+      }
+  
+    }
+
+    &__logo{
+      display: flex;
+      justify-content: center; 
+
+      img{
+        width: 80px;
+        filter: invert(1);
+      }
+    }
+
+    .name-user{
+      text-align: center;  
+      font-size: 20px; 
+      font-weight: 700 !important;
+      line-height:24px !important; 
+    }
+
+   
+
+
+  }
+
+  .content-sidebar-sidenav{
+    text-align: left;
+    display: flex; 
+    align-items: flex-start;
+    padding: 1em 0; 
+    flex-direction: column;
+    margin: 0 5em;
+
+    .sidebar{  
+      padding: 1em 0;
+
+      
+      &__items{
+        display: flex;
+        gap: 1em;
+        cursor: pointer;
+        align-items: center; 
+
+        a{
+          text-decoration: none;
+        }
+      }
+
+         
+      &__name-item:hover{
+        text-decoration: none;
+        position: relative;
+        &:after {
+          position: absolute;
+          content: '';
+          height: 4px;
+          bottom: -8px;
+          margin: 0 auto;
+          border-radius: 8px;
+          left: 0;
+          width: 100%;
+          background: #C7B1DA;
+          animation: lineAnim 1s forwards;
+        }
+ 
+        @keyframes lineAnim {
+            0% {
+              width: 0;
+            } 
+            100% {
+              width: 100%;
+            } 
+        } 
+      }
+
+      &__icon{
+        background: white;
+        border-radius: 50%;
+        padding: 0.5em;
+
+   
+      }
+
+    }
+    
+
+ 
+  }
+
+  .buttons{
+    display: block;
+    line-height: 5em; 
+    margin-top: 2em; 
+  }
+}
+
+.SideDashboard{
+
+  .content{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    height: 100vh;
+    z-index: 99 !important;
+  }
+
+  .navigation  {
+      position: absolute;
+      left: 0%;
+      text-align: 0; 
+      width: 270px;
+      z-index: 3 !important; 
+      height: 100vh;
+  }
+
+ 
+  .close-sidebar{
+    text-align: right;
+    background-color: #04021a;
+    &__icon{
+      color: white;
+      font-weight: bold;
+      padding: 0.5em 2em;
+      cursor: pointer;
+    }
+
+  }  
+ 
+ 
+}

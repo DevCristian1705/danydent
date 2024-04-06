@@ -1,0 +1,101 @@
+@import '../../../assets/custom/breakpoints.scss';
+
+.Classic{
+    .navbar{ 
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly; 
+        background-image: linear-gradient(-2700deg, #0a154d 55%, #0401bb 100%, #6c62e9 20%);
+        position: sticky;
+        top: 0;
+        z-index: 9999;
+        height: 50px;
+        @include media-breakpoint("lt-md") { 
+            justify-content: space-around;
+        }
+    
+    
+        .responsive-web{
+            display: flex;
+            @include media-breakpoint("lt-md") { 
+                display: none !important;
+            }
+        }
+    
+        .responsive-mobile{
+            display: none;
+            @include media-breakpoint("lt-md") { 
+                display: flex !important;
+            }
+        }
+    
+        &__dev{  
+            .imagen{
+                width: 65px;
+                filter: invert(1);
+            } 
+        }
+    
+        &__ul{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5em;
+        }
+    
+        &__mobile{
+            .imagen{
+                cursor: pointer;
+                width: 65px;
+                filter: invert(1);
+            }
+        }
+                
+        &__li{
+            list-style: none;
+            a{
+                text-decoration: none;
+                &:hover{
+                    color :#65e2d9;
+                    transition : 300 ease-in-out; 
+                }
+            }
+         
+             
+        }
+    }
+}
+
+.Dashboard{
+    .navbar{ 
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly; 
+        background-image: linear-gradient(-2700deg, #0a154d 55%, #0401bb 100%, #6c62e9 20%);
+        position: sticky;
+        top: 0;
+        z-index: 9999;
+        height: 50px;
+
+        @include media-breakpoint("lt-md") { 
+            justify-content: space-around;
+        }
+      
+    }
+
+    .closed{
+        display: none;
+        @include media-breakpoint("lt-sm") { 
+          display: flex;
+        }
+    }
+    .name{
+        display: flex;
+        align-items: center;
+        gap: 2em;
+    }
+
+    img{
+        filter: invert(1);
+    }
+}

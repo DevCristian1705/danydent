@@ -1,0 +1,99 @@
+@import '../../../../assets/custom/breakpoints.scss';
+ 
+.registro{
+  display: grid;
+  align-items: center;
+  overflow: auto;
+ 
+  @include media-breakpoint('lt-md') {
+    align-content: space-between;
+  } 
+
+  &::-webkit-scrollbar {
+    width: 3px;
+    height: 10px;
+    -webkit-appearance: none !important;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    border: 1px solid transparent;
+    background-color: #c4c4c4;
+    height: 2px;
+  }
+
+  &__content{ 
+    margin: 3em;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    text-align: center; 
+  }
+ 
+      .formulario{
+          
+        &__inputs{
+          display: flex;
+          flex-direction: column;
+          gap: 2em;
+        } 
+      }
+}
+
+.cabecera-gradiente{ 
+  display: flex;
+  position: absolute;
+  bottom: 0px;
+}
+  
+
+.table{ 
+  padding: 2em;
+  width: auto;
+ 
+  @include media-breakpoint('lt-sm') {
+    padding: 2em; 
+    overflow: auto;
+    display: flex; 
+  } 
+
+
+  th{
+    background: #002ea1;
+    text-align: center;
+    font-style: normal;
+    font-size: 14px;
+    line-height: 145%;
+    color: rgb(255 255 255 / 87%);
+  }
+
+  td {
+      text-align: center; 
+      font-style: normal;
+      font-size: 14px;
+      line-height: 145%;
+      color: rgba(0, 0, 0, 0.87);
+  }
+}
+
+.mat-column-names, 
+.mat-column-last_name, 
+.mat-column-cellphone,  
+.mat-column-email{
+  min-width: 80px;
+}
+
+.mat-column-email{
+  border-top-right-radius: 20px;
+}
+
+
+.mat-column-photo{
+  border-top-left-radius: 20px;
+}
+
+
+mat-mdc-table, .mdc-data-table__table {
+  border-radius: 20px; 
+  background-color: transparent;
+}

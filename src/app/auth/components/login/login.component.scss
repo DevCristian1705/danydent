@@ -1,0 +1,81 @@
+@import '../../../../assets/custom/breakpoints.scss';
+
+
+.login{
+  display: grid;
+  align-items: center;
+  height: 100vh;
+
+  @include media-breakpoint('lt-md') {
+    align-content: space-between;
+  }  
+  
+  &__content{ 
+    margin: 3em;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    text-align: center;
+  }
+
+    &::-webkit-scrollbar {
+      width: 3px;
+      height: 10px;
+      -webkit-appearance: none !important;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      border: 1px solid transparent;
+      background-color: #c4c4c4;
+      height: 2px;
+    }
+ 
+      .formulario{
+          
+        &__inputs{
+          display: flex;
+          flex-direction: column;
+          gap: 2em;
+        }
+
+        &__olvidopass{
+          float: right;
+          margin-top: 0.5rem;
+          text-decoration: underline;
+          cursor: pointer;
+        } 
+      }
+}
+
+  
+.cabecera-gradiente{
+  display: none;
+  @include media-breakpoint('lt-md') {
+    display: block;
+  }   
+}
+
+
+.botones{
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.back{ 
+  display: none;
+  @include media-breakpoint('lt-md') {
+    display: flex;
+    position: absolute; 
+    width: 100%;
+    justify-content: right;
+   
+    span{   
+      text-align: right;
+      padding: 0.5em;;
+    }
+  }   
+
+ 
+}

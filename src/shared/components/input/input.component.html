@@ -1,0 +1,114 @@
+<div>
+  @switch (typeInput) {
+    @case ('ClassicInput') {
+      <div class="ClassicInput">
+        <div class="input-container" [style.width]="width">
+          <input 
+            type="text" 
+            [id]="idTextField" 
+            [style.height]="height" 
+            [placeholder]="placeholder" 
+            [disabled]="disabled"
+            [readonly]="readOnly"
+            [value]="value"
+            [ngClass]="classInput"
+            (input)="onChange($event.target)" 
+            autocomplete="off" />
+          <label [htmlFor]="idTextField"  class="label">{{label}}</label>
+        </div>
+        
+        <div  [style.width]="width" >
+          <div *ngIf="hasError" class="message-error"  >
+            {{msgError}}
+          </div>
+        </div>
+      </div> 
+    }
+    @case ('ClassicInputPass') {
+      <div class="ClassicInputPass">
+        <div class="input-container" [style.width]="width">
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            [id]="idTextField" 
+            [style.height]="height"
+            [placeholder]="placeholder"
+            [disabled]="disabled"
+            [readonly]="readOnly"
+            [value]="value"
+            (blur)="onBlur($event)"
+            [ngClass]="classInput"
+            (input)="onChange($event.target)"
+            autocomplete="off" />
+          <label   class="label">{{label}}</label>
+          <div class="icon" (click)="onchangeIconPass()">
+            <img *ngIf="showPassword" src="assets/iconos/icon-eye-open.svg">
+            <img *ngIf="!showPassword" src="assets/iconos/icon-eye-close.svg">
+          </div>
+        </div>
+        <div  [style.width]="width">
+          <div *ngIf="hasError" class="message-error">
+            {{msgError}}
+          </div>
+        </div>
+      </div>
+    }
+    @case ('ClassicInputRegistroPass') {
+      <div class="ClassicInputRegistroPass">
+        <div class="input-container" [style.width]="width">
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            [id]="idTextField"
+            [style.height]="height"
+            [placeholder]="placeholder"
+            [disabled]="disabled"
+            [readonly]="readOnly"
+            [value]="value" 
+            [ngClass]="classInput"
+            (focus)="onFocus($event)" 
+            (input)="onChange($event.target)"
+            autocomplete="off" />
+          <label [htmlFor]="idTextField"  class="label">{{label}}</label>
+          <div class="icon" (click)="onchangeIconPass()">
+            <img *ngIf="showPassword" src="assets/iconos/icon-eye-open.svg">
+            <img *ngIf="!showPassword" src="assets/iconos/icon-eye-close.svg">
+          </div>
+        </div>
+   
+    <div *ngIf="flgVerCaracteristicas || msgError">
+      <div class="color-secondary" >Tu contraseña debe cumplir con lo siguiente</div>
+      <div class="list-error-password font-secondary-regular-12">
+         
+          <div class="text-pass" [ngClass]="{ 'text-pass--valid' : isLength , 'text-pass--invalid' : !isLength}">
+            <img [src]="!isLength ? 'assets/iconos/icon-ul.svg' : 'assets/iconos/icon-check-azul.svg' " alt="icono de check">
+            <span class="font-secondary-regular-12">Mínimo 8 caracteres.</span>
+          </div>
+    
+          <div class="text-pass" [ngClass]="{ 'text-pass--valid' : isMinuscula , 'text-pass--invalid' : !isMinuscula}">
+            <img [src]="!isMinuscula ? 'assets/iconos/icon-ul.svg' : 'assets/iconos/icon-check-azul.svg' " alt="icono de check">
+            <span class="font-secondary-regular-12"> Al menos una minúscula. </span>
+          </div>
+    
+          <div class="text-pass" [ngClass]="{ 'text-pass--valid' : isMayuscula , 'text-pass--invalid' : !isMayuscula}">
+            <img [src]="!isMayuscula ? 'assets/iconos/icon-ul.svg' : 'assets/iconos/icon-check-azul.svg' " alt="icono de check">
+            <span class="font-secondary-regular-12"> Al menos una mayúscula. </span>
+          </div>
+    
+          <div class="text-pass" [ngClass]="{ 'text-pass--valid' : isNumber, 'text-pass--invalid' : !isNumber}">
+            <img [src]="!isNumber ? 'assets/iconos/icon-ul.svg' : 'assets/iconos/icon-check-azul.svg' " alt="icono de check">
+            <span class="font-secondary-regular-12"> Al menos un número. </span>
+          </div>
+    
+          <div class="text-pass" [ngClass]="{ 'text-pass--valid' : isSimbolo , 'text-pass--invalid' : !isSimbolo}" >
+            <img [src]="!isSimbolo ? 'assets/iconos/icon-ul.svg' : 'assets/iconos/icon-check-azul.svg' " alt="icono de check">
+            <span class="font-secondary-regular-12"> Al menos un carácter especial. Ejm: {{ ejemCaracteres }} </span>
+          </div> 
+         
+      </div>
+    </div>
+     
+   
+         
+      </div> 
+    }
+  }
+</div>

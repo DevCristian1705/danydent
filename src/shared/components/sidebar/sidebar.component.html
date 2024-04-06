@@ -1,0 +1,72 @@
+<ng-container [ngSwitch]="type">
+    <ng-container *ngSwitchCase="'SideLanding'"> 
+        <div  [ngClass]="typeClass">
+            <div  [ngClass]="{'content' : isShow, 'contentDark' : !isShow}" >
+                <div class="navigation" *ngIf="isShow">  
+                    <div class="div-closed">
+                    <div class="close-sidebar" >
+                        <div  class="close-sidebar__icon"  (click)="onHiddenSidenav()"> &#x2715; </div>
+                    </div>
+                    <div class="div-closed__logo">
+                        <img src="../../../assets/iconos/icono-navbar.png" alt="loco de cambix">
+                    </div>
+                    <div class="name-user white"  *ngIf="userSession">  
+                        {{ userSession?.names  | titlecase }}
+                    </div> 
+                    </div>
+
+                    <div class="loader-line" ></div>
+
+                    <div class="content-sidebar-sidenav " >
+                        <div class="sidebar" *ngFor="let item of sidebarArray$ | async">
+                            <div class="sidebar__items" (click)="onActive(item.routerlink)" >
+                                <img class="sidebar__icon" [src]="item.icon" alt="icono de sidebar" width="25" height="25">
+                                <span class="font-secondary-regular-18 white sidebar__name-item " >
+                                    <a class="white" [href]="item.routerlink"> {{ item.name }} </a>                    
+                                </span>
+                            </div>
+                        </div>
+                        <div class="buttons"  *ngIf="userSession">
+                            <app-button
+                                nombreBotton="Cerrar Sesión"  
+                                (clicked)="onCerrarSession()"
+                                size="lg" type="BottonPrimaryBlock">
+                            </app-button> 
+
+                            <app-button
+                                nombreBotton="Dashboard"  
+                                (clicked)="onNavigate('/dashboard')"
+                                size="lg" type="BottonPrimaryBlock">
+                            </app-button> 
+                        </div> 
+                        <div class="buttons"  *ngIf="!userSession">
+                            <app-button
+                                nombreBotton="Iniciar Sesión"  
+                                (clicked)="onNavigate('/auth')"
+                                size="lg" type="BottonPrimaryBlock">
+                            </app-button> 
+                            <app-button
+                                nombreBotton="Registrate" 
+                                (clicked)="onNavigate('/auth/registro')" 
+                                size="lg" type="BottonPrimaryBlock">
+                            </app-button>  
+                        </div>
+                    </div>
+
+                </div>
+            </div>  
+        </div>  
+    </ng-container>
+    <ng-container *ngSwitchCase="'SideDashboard'"> 
+        <div  [ngClass]="typeClass">
+            <div  [ngClass]="{'content' : isShow, 'contentDark' : !isShow}" >
+                <div class="navigation" *ngIf="isShow">  
+                    <div class="close-sidebar" >
+                        <div  class="close-sidebar__icon"  (click)="onHiddenSidenav()"> &#x2715; </div>
+                        <app-menu></app-menu> 
+                    </div> 
+                </div>
+            </div>  
+        </div>  
+    </ng-container>
+</ng-container>

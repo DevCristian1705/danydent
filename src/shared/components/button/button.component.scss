@@ -1,0 +1,310 @@
+@import '../../../assets/custom/breakpoints.scss';
+@import '../../../assets/custom/fuentes.scss';
+
+@mixin styleButton($bg-color, $color) {
+    padding: 0;
+    margin: 0;
+    display: inline-block; 
+    cursor: pointer;
+    border-radius: 10px; 
+    background-color: $bg-color; 
+    border: $color;
+    outline: none;
+}
+ 
+@mixin styleTextoButton($color) { 
+    padding: 0;
+    margin: 0; 
+    color: $color;  
+}
+ 
+@mixin styleSpinnerQarter($color) {
+    width: 14px;
+    border: 3.5px solid $color;
+    border-top-color: transparent;
+    animation-duration: 1.5s; 
+}
+
+
+@mixin styleSpinner($mb, $mt) {
+    --spinner-color: black; 
+    aspect-ratio: 1/1;
+    border-radius: 50%; 
+    animation-name: spin;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear; 
+    margin-bottom: $mb!important;
+    margin-top: $mt !important; 
+}
+
+ 
+$color-secondary-100: #FEC3C8;
+$color-secondary-200: #FF7784;
+$color-secondary-300: #E45765;
+$color-secondary: #FF4D5E;
+$color-white: #FFFFFF;
+
+$color-black-300: #626262;
+$color-red : #d92f2f;
+$color-red : #d92f2f;
+$color-red-hover : #d40808;
+
+.BottonPrimary{     
+    @include styleButton($color-red, solid 1px $color-red);  
+    
+    &__sm { .texto-botton, .texto-botton-oculto {
+        padding: 8px 12px !important;
+        @include styleTextoButton(white);   
+    }}
+    &__md { .texto-botton, .texto-botton-oculto {
+        padding: 11px 40px !important;
+        @include styleTextoButton(white);   
+    }}
+    &__lg { .texto-botton, .texto-botton-oculto {
+        padding: 13px 40px !important;
+        @include styleTextoButton(white);   
+    }}
+    &__xl { .texto-botton, .texto-botton-oculto {
+        padding: 13px 96px !important;
+        @include styleTextoButton(white);   
+    }}
+    
+    .texto-botton, .texto-botton-oculto{    
+        @include styleTextoButton(white);   
+        &:disabled:not(.texto-botton, .texto-botton-oculto:hover){ 
+            cursor:default;
+            color:  $color-secondary-200; } 
+    }
+    
+    &:disabled:not(.texto-botton, .texto-botton-oculto:hover){ 
+        background-color: $color-secondary-200; 
+        border: solid 1px $color-secondary-200;
+        cursor:default;
+    }
+
+
+    &:hover{  
+        border: solid 1px $color-red-hover;
+        background-color: $color-red-hover; 
+    }
+    
+    &:active, &:focus{ 
+        background-color: $color-secondary-300; 
+        border: solid 1px $color-secondary-300;
+    }
+  
+    .spinner--quarter {@include styleSpinnerQarter(#fff7f7)}   
+}
+
+
+.BottonPrimaryBlock{     
+    @include styleButton($color-red, solid 1px $color-red);  
+    width: 100%;
+    
+    &__sm { .texto-botton {
+        padding: 8px 12px !important;
+        @include styleTextoButton(white);   
+    }}
+    &__md { .texto-botton {
+        padding: 11px 35px !important;
+        @include styleTextoButton(white);   
+    }}
+    &__lg { .texto-botton {
+        padding: 13px 40px !important;
+        @include styleTextoButton(white);   
+    }}
+    &__xl { .texto-botton {
+        padding: 13px 80px !important;
+        @include styleTextoButton(white);   
+    }}
+
+    .texto-botton{    
+        @include styleTextoButton(white);   
+        &:disabled:not(.texto-botton:hover){ 
+            cursor:default;
+            color:  $color-secondary-200; } 
+    }
+    
+    &:disabled:not(.texto-botton:hover){ 
+        background-color: $color-secondary-200; 
+        border: solid 1px $color-secondary-200;
+        cursor:default;
+    }
+
+
+    &:hover{  
+        border: solid 1px $color-red-hover;
+        background-color: $color-red-hover; 
+    }
+    
+    &:active, &:focus{ 
+        background-color: $color-secondary-300; 
+        border: solid 1px $color-secondary-300;
+    }
+  
+    .spinner--quarter {@include styleSpinnerQarter(#fff7f7)}   
+}
+
+.BottonLandingPrimary{     
+    @include styleButton($color-red, solid 1px $color-red);   
+    width: 100%;
+ 
+    &__sm { .texto-botton {
+        padding: 8px 20px !important;
+        @include styleTextoButton(white);   
+    }}
+    &__lg { .texto-botton {
+        padding: 8px 20px !important;
+        @include styleTextoButton(white);   
+    }}
+
+    
+    .texto-botton, .texto-botton-oculto{    
+        @include styleTextoButton(white);   
+        &:disabled:not(.texto-botton, .texto-botton-oculto:hover){ 
+            cursor:default;
+            color:  $color-secondary-200; } 
+    }
+     
+}
+
+
+.BottonLanding{     
+    @include styleButton(#0c066d, solid 1px #288aff);  
+    width: 100%;
+ 
+    &__sm { .texto-botton {
+        padding: 8px 20px !important;
+        @include styleTextoButton(white);   
+    }}
+    &__lg { .texto-botton {
+        padding: 8px 20px !important;
+        @include styleTextoButton(white);   
+    }}
+
+
+    .texto-botton{       
+        &:disabled:not(.texto-botton:hover){ 
+            cursor:default;
+            color:  $color-secondary-200; } 
+    } 
+}
+
+.BottonGoogle{    
+    .custom-button{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px; 
+        p{
+            padding: 0%;
+            margin: 0;
+        }
+    }
+
+    @include styleButton(#ffffff, solid 1px $color-black-300);   
+
+    &__sm {.custom-button {padding: 9px 24px !important}}
+    &__md {.custom-button {padding: 11px 40px !important}}
+    &__lg {.custom-button {padding: 13px 56px !important}}
+    &__xl {.custom-button {padding: 13px 96px !important}}
+    &__max-width-254{
+        max-width: 253.19px;
+        width: 253.19px;
+        .custom-button {padding: 13px 0 !important}
+    }
+    .custom-button{  
+        @include styleTextoButton($color-black-300);
+        &:disabled:not(.custom-button:hover){  
+            color:  $color-black-300;
+            cursor:default;
+        }
+        &:hover{ color:  $color-black-300; }  
+    }
+    
+}
+
+.BottonIcon{     
+    display: flex;
+    justify-content: center;
+    padding: 9px 10px !important;
+    cursor: pointer;
+    @include styleButton(#ffffff, solid 1px $color-black-300);   
+}
+
+
+.Classic{   
+    @include styleButton(#ffffff, none);     
+
+    .text, .text-static{
+        @include styleTextoButton(rgba(255, 77, 94, 1));
+        text-decoration:  underline;  
+        &:hover{ color:  $color-secondary-200; } 
+        &:disabled{ color:  $color-secondary-100 !important;} 
+    } 
+
+    &:disabled{
+        .text, .text-static{
+            @include styleTextoButton( $color-secondary-100);
+            text-decoration:  underline;  
+            &:hover{ color:  $color-secondary-100; } 
+        } 
+    }
+  
+    &:hover{ color:  $color-secondary-100; }   
+    &:active, &:focus{ color:  $color-secondary-200; } 
+}
+
+.show-loading{  
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+ 
+    .texto-botton-oculto, .texto-botton-oculto-static{
+        visibility: hidden;
+        font-size: 16px;   
+        height: 0px;
+    }
+ 
+    .spinner--quarter { 
+        position: inherit !important;
+        display: inherit !important;
+    } 
+}
+ 
+.spinner {    @include styleSpinner(5%,-5%);  }
+.spinner2 {    @include styleSpinner(5%,-9%);   }
+  
+ 
+@keyframes spin {
+from {    transform: rotate(0deg);}
+to {    transform: rotate(360deg);}
+}
+ 
+// @include media-breakpoint-landing("xs") {
+//     .texto-botton, .texto-botton-oculto{
+//         padding: 9px 24px ;
+//     } 
+// } 
+// @include media-breakpoint-landing("sm") { 
+//     .texto-botton, .texto-botton-oculto{
+//         padding: 11px 40px; 
+//     } 
+// }  
+// @include media-breakpoint-landing("md") { 
+//     .texto-botton, .texto-botton-oculto{
+//         padding: 11px 40px; 
+//     } 
+// }  
+// @include media-breakpoint-landing("lg") { 
+//     .texto-botton, .texto-botton-oculto{
+//         padding: 13px 56px;
+//     } 
+// }
+
+// @include media-breakpoint-landing("xl") { 
+//     .texto-botton, .texto-botton-oculto{
+//         padding: 13px 96px ;
+//     } 
+// } 
+ 

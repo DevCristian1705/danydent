@@ -1,0 +1,73 @@
+<ng-container [ngSwitch]="type">
+    <ng-container *ngSwitchCase="'CardExperiencia'"> 
+        <div class="CardExperiencia card" [id]="id">
+           
+            <div class="titulo secondary-400 primary-bold-h3 line-under-text">
+                {{title}}
+            </div>
+
+            <div class="datos">
+                <div class="datos__logos"  *ngFor="let item of dataArray | async"> 
+                    <span class="primary-bold-h2 secondary-400">
+                        {{ item.name_company}} <br>
+                        <div class="font-secondary-bold-14">  {{ item.date_init}} -  {{ item.date_end}}</div>
+                    </span>	 
+                    <img [src]="item.img_company" width="100" height="60" [alt]="item.altImg">
+                    <div class="ver-mas font-secondary-bold-16"> {{ dataHover }}</div>
+                </div> 
+            </div>   
+        
+        </div> 
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'CardProyectos'"> 
+        <div class="CardProyectos card" [id]="id"> 
+            <div class="titulo secondary-400 primary-bold-h3 line-under-text">
+                {{title}}
+            </div>
+
+            <div class="datos">
+                <div class="logos" *ngFor="let item of dataArray | async"> 
+                      <span class="primary-bold-h2 secondary-400">
+                        {{item.name_proyecto}}
+                    </span>	 
+                    <span class="font-secondary-bold-14 black-300">
+                        {{item.description}}
+                    </span>	 
+                    <img [src]="item.img_proyecto" width="100" height="60" alt="imagen-del-proyecto">
+                    <div class="font-secondary-bold-16"> {{ dataHover }}</div>
+                </div> 
+            </div> 
+        </div> 
+    </ng-container>
+ 
+    <ng-container *ngSwitchCase="'CardContacto'"> 
+        <div class="CardContacto card" [id]="id"> 
+            <div class="titulo secondary-400 primary-bold-h3 line-under-text">
+                {{title}}
+            </div>
+
+            <div class="datos datos--centrado">
+                <div class="info-perfil"  *ngFor="let item of dataArray | async">
+                    <div class="primary-bold-h6"> <b>{{ item.titulo}}:</b> </div>
+                    <div class="primary-regular"> {{ item.dato}}</div>
+                </div>   
+            </div>    
+        </div>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'CardDevelop'">  
+        <div *ngFor="let item of dataArray | async" > 
+            <div class="CardDevelop card card--develop" [id]="id"> 
+                <div>
+                    <span class="primary-bold-h1 writing">{{ item.name }}</span>  <br>
+                    <div class="secondary-400 primary-bold-h3 animationFadeIn">
+                        <span class="line-under-text">{{ item.text_lineOne}}</span>{{item.text_linetwo}}
+                    </div>
+                </div>
+
+                <img class="imagen-dev " [src]=" item.img_dev" alt="foto-perfiñ">	
+            </div>  	  
+        </div>  
+    </ng-container>
+</ng-container>

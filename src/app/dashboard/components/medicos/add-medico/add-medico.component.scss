@@ -1,0 +1,50 @@
+@import '../../../../../assets/custom/breakpoints.scss';
+ 
+.registro{
+  display: grid;
+  align-items: center;
+  overflow: auto;
+  height: 100vh;
+ 
+  @include media-breakpoint('lt-md') {
+    align-content: space-between;
+  } 
+
+  &::-webkit-scrollbar {
+    width: 3px;
+    height: 10px;
+    -webkit-appearance: none !important;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    border: 1px solid transparent;
+    background-color: #c4c4c4;
+    height: 2px;
+  }
+
+  &__content{ 
+    margin: 3em;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    text-align: center; 
+  }
+ 
+      .formulario{
+          
+        &__inputs{
+          display: flex;
+          flex-direction: column;
+          gap: 2em;
+        } 
+      }
+}
+
+.cabecera-gradiente{
+  display: none;
+  @include media-breakpoint('lt-md') {
+    display: block;
+  }   
+}
+  

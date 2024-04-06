@@ -1,0 +1,65 @@
+@import '../../assets/custom/breakpoints.scss';
+
+.content{
+    min-height: 100%;
+    width: 100%;
+    display: flex;
+
+    @include media-breakpoint('xs') {
+        flex-direction: column;
+    }
+
+
+    .fijo{
+        width: 60%;
+        background-image:  url('../../assets/background/bg-portafolio-1.webp');
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+
+        @include media-breakpoint('lt-md') {
+           display: none;
+        }
+
+        .contenido{
+            place-items: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 80%;
+        }
+
+        .logo{ 
+            cursor: pointer;
+        }
+        .imagen{
+            width: 150px;
+            filter: invert(1);
+         
+        }
+
+        .items{
+            display: flex;
+            flex-direction: column;
+            row-gap: 3rem;
+            margin: 2em 0em 0em 0em;
+            color: white;
+            text-align: center;
+        }
+
+    
+ 
+    }
+
+    .vistas{
+        width: 40%;
+        background: #FBF8FD;
+
+        @include media-breakpoint('lt-md') {
+            width: 100%;
+
+         }
+    }
+}

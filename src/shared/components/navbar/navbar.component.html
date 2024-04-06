@@ -1,0 +1,79 @@
+<ng-container [ngSwitch]="type">
+    <ng-container *ngSwitchCase="'Classic'"> 
+        <div  [ngClass]="typeClass">
+            <nav class="navbar">
+                <div class="navbar__dev">
+                    <img class="imagen" src="../../../assets/iconos/icono-navbar.png" alt="logo">
+                </div>
+                
+                <ul class="navbar__ul font-secondary-bold"> 
+                    <div class="navbar__ul responsive-web">
+                        <div *ngFor="let item of navbarArray$ | async">
+                            <li class="navbar__li">
+                                <a [href]="item.routerlink" class="white">{{item.name}}</a>
+                            </li>
+                        </div>  
+
+                        <app-button
+                            *ngIf="userSession"
+                            [nombreBotton]="userSession.names" 
+                            (clicked)="onNavigate('/dashboard')"
+                            size="sm" type="BottonPrimary">
+                        </app-button> 
+                        <app-button
+                            *ngIf="!userSession"
+                            nombreBotton="Iniciar Sesión" 
+                            (clicked)="onNavigate('auth/login')"
+                            size="sm" type="BottonPrimary">
+                        </app-button> 
+                    </div>
+    
+                    <div class="navbar__mobile responsive-mobile">
+                        <img (click)="onActiveSideBar(true)"
+                        class="imagen" src="../../../assets/iconos/icono-menu.png" alt="logo"> 
+                
+                        <app-sidebar 
+                            [isShow]="isSidebar"
+                            (closed)="onActiveSideBar(false)" >
+                        </app-sidebar> 
+                    </div>
+            
+                
+                </ul> 
+            </nav>
+        </div>
+        
+    </ng-container>
+    <ng-container *ngSwitchCase="'Dashboard'"> 
+        <div  [ngClass]="typeClass">
+            <nav class="navbar">
+                <div class="name font-secondary-bold-16 white"> 
+                    <div class="closed"> 
+                        <div (click)="onActiveSideBar(true)">  
+                            <img class="cursor-pointer" src="../../../assets/iconos/icono-menu.png" alt="" width="40" height="40">
+                        </div> 
+                        <app-sidebar 
+                            type="SideDashboard"
+                            [isShow]="isSidebar"
+                            (closed)="onActiveSideBar(false)" >
+                        </app-sidebar> 
+                    </div>
+
+                    <div class="name-user white"  *ngIf="userSession">  
+                        {{ userSession?.names  | titlecase }}
+                    </div> 
+
+                   
+                </div>
+    
+                <app-button
+                    nombreBotton="Landing" 
+                    (clicked)="onNavigate('/')"
+                    size="lg" type="BottonLanding">
+                </app-button>  
+            </nav>
+    
+        </div> 
+        
+    </ng-container>
+</ng-container>

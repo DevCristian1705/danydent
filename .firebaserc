@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "danydent-d7005"
+  },
+  "targets": {
+    "danydent-d7005": {
+      "hosting": {
+        "danydent": [
+          "danydent-d7005"
+        ]
+      }
+    }
+  }
+}

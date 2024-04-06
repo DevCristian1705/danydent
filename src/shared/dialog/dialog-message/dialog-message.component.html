@@ -1,0 +1,20 @@
+<div class="funds">
+    <img class="imagen" [src]="data.icon" alt  >
+
+    <div class="funds__content" [style.width]="width" > 
+        <div class="titulo primary-bold-h5 mb-4">
+            {{ data.titulo }}
+        </div>
+        <div class=" body font-secondary-regular-16">  
+            {{ data.body }} <br> 
+        </div>
+        <div class="botones">
+            <app-button
+                (click)="onAceptar(true)"
+                type="BottonLanding"
+                [size]="size"
+                [nombreBotton]="data.nameBoton" 
+            ></app-button>
+        </div>
+    </div>
+</div>
