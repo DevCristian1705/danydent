@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";  
 import { IMedico } from "../../../shared/interfaces/personas";
-import { Firestore, addDoc, collection, collectionData, deleteDoc, doc, getDoc, onSnapshot, updateDoc } from "@angular/fire/firestore";
+import { Firestore, addDoc, collection, collectionData, deleteDoc, doc, getDoc, updateDoc } from "@angular/fire/firestore";
 import { PATHS } from "../../../core/constants/storage";
-import { Observable } from "rxjs";
+import { Observable, from, map } from "rxjs";
  
 
 @Injectable({
@@ -25,12 +25,14 @@ export class MedicosServices {
         const GET_LIST_MEDICO = collection(this.firestore, PATHS.medicos)
         return collectionData(GET_LIST_MEDICO, {idField : 'id_medico'})  as Observable<IMedico[]>
     }
-
-    async getMedico(id : string){
+  
+    getMedico(id: string): Observable<IMedico> {
         const GET_MEDICO = doc(this.firestore, PATHS.medicos, id);
-        const MEDICO =  await getDoc(GET_MEDICO)
-        return MEDICO.data() as IMedico;
-    }
+        const MEDICO_PROMISE = getDoc(GET_MEDICO);
+        return from(MEDICO_PROMISE).pipe(
+          map((MEDICO) => MEDICO.data() as IMedico)
+        );
+      }
 
     update(id : string, medico : IMedico){
         const UPDATE_MEDICO = doc(this.firestore, PATHS.medicos, id);

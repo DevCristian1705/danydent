@@ -22,38 +22,39 @@ export class GlobalService {
   private menuOptions: menuOptions[] = [
     {
       code: 1,
+      name: 'Landing',
+      router : '/',
+      icon: '../../../assets/iconos/icono-home.png',
+      alt_icon: 'icono landing' 
+    }, 
+    {
+      code: 2,
       name: 'Dashboard',
       router : '/dashboard',
       icon: '../../../assets/iconos/icono-home.png',
-      alt_icon: 'icono dashboar',
-      subMenu: []
+      alt_icon: 'icono dashboar'
     }, 
     {
       code: 3,
-      name: 'Experiencia',
-      icon: '../../../assets/iconos/icono-experiencia.png',
-      alt_icon: 'icono experiencia',
-      subMenu: [
-        {code: 0,name: 'Bancom', router : 'dashboard/exp-laboral/bancom'},
-        {code: 1,name: 'Ti Soluciones', router : 'dashboard/exp-laboral/ti-soluciones'},
-        {code: 2,name: 'Textil Del Valle', router : 'dashboard/exp-laboral/del-valle'},
-        {code: 3,name: 'Midis - Pais', router : 'dashboard/exp-laboral/midis'}
-      ]
+      name: 'Medicos',
+      router : '/dashboard/medicos',
+      icon: '../../../assets/iconos/icono-home.png',
+      alt_icon: 'icono dashboar'
     },
     {
       code: 4,
-      name: 'Proyectos',
-      icon: '../../../assets/iconos/icono-proyectos.png',
-      alt_icon: 'icono proyectos',   
-      subMenu: [
-        {code: 0,name: 'Generador Otp', router : 'dashboard/proyecto/generate-otp'},
-        {code: 1,name: 'Simulador de Cambio', router : 'dashboard/proyecto/simulator'},
-        {code: 2,name: 'Bg Random', router : 'dashboard/proyecto/bg-random'},
-        {code: 3,name: 'Encuesta', router : 'dashboard/encuesta'},
-        {code: 4,name: 'Org de tareas', router : 'dashboard/proyecto/org-task'},
-        {code: 5,name: 'Calendario', router : 'dashboard/proyecto/calendar'}
-      ]
-    },
+      name: 'Pacientes',
+      router : '/dashboard/pacientes',
+      icon: '../../../assets/iconos/icono-home.png',
+      alt_icon: 'icono dashboar'
+    }, 
+    {
+      code: 5,
+      name: 'Citas',
+      router : '/dashboard/citas',
+      icon: '../../../assets/iconos/icono-home.png',
+      alt_icon: 'icono dashboar'
+    }, 
   ];
   //SIDEBAR
   private sideBarOptions: sideBarOptions[] = [

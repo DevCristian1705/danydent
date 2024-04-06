@@ -38,19 +38,25 @@ export class AuthService {
 
   login(email : string, password : string){ 
     this.fireauthsrv.signInWithEmailAndPassword(email, password)
-    .then((userCredential) => this.userData = userCredential.user)
+    .then((userCredential) => {
+      this.userData = userCredential.user;
+      this.router.navigateByUrl('/dashboard');
+    })
     .catch((error) => this.onValidError(error.code, 'login'));
   }
 
   loginGoogle(){    
     this.fireauthsrv.signInWithPopup(new GoogleAuthProvider())
-    .then((resp) => console.log(resp))
+    .then(() => this.router.navigateByUrl('/dashboard') )
     .catch((error) =>console.log(error));
   }
 
   register(email : string, password : string){
     this.fireauthsrv.createUserWithEmailAndPassword(email, password)
-    .then((userCredential) => this.userData = userCredential.user)
+    .then((userCredential) => {
+      this.userData = userCredential.user;
+      this.router.navigateByUrl('/dashboard')
+    })
     .catch((error) => this.onValidError(error.code,'registro'));
   }
 

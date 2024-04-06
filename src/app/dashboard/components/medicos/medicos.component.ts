@@ -7,6 +7,9 @@ import { MedicosServices } from '../../services/medicos.srv';
 import { Router } from '@angular/router';
 import { IMedico } from '../../../../shared/interfaces/personas';
 import {MatTableModule} from '@angular/material/table';
+import { DialogConfirmComponent } from '../../../../shared/dialog/dialog-confirm/dialog-confirm.component';
+import { messageDelete } from '../../../../core/constants/message-type';
+import { PreloaderComponent } from '../../../../shared/components/preloader/preloader.component';
 
 @Component({
   selector: 'app-medicos',
@@ -15,39 +18,58 @@ import {MatTableModule} from '@angular/material/table';
     MatDialogModule, 
     ButtonComponent,  
     CommonModule,
-    MatTableModule 
+    MatTableModule ,
+    PreloaderComponent
   ],
   templateUrl: './medicos.component.html',
   styleUrl: './medicos.component.scss'
 })
-export class MedicosComponent {
 
+
+export class MedicosComponent {
   listMedicos : IMedico[] = [];
-  displayedColumns: string[] = [
-    'photo', 'names', 'last_name', 'cellphone', 'email'];
- 
+  displayedColumns: string[] = [ 'photo', 'names', 'last_name', 'cellphone', 'email', 'accion'];
+  isLoading: boolean = false;
   constructor(
      public fb: FormBuilder, 
      private medicosrv: MedicosServices,   
      public dialog: MatDialog, 
      public router: Router,  
    ) { 
- 
-    
-    //LISTAR MEDICOS REGISTRADOS
-    this.medicosrv.getListMedicos().subscribe(resp => {
-      this.listMedicos = resp;
-      console.log('listMedicos',this.listMedicos)
-    });
+     
    }
 
+   ngOnInit(){
+    this.onLoadListMedicos();
+   }
+ 
+   onLoadListMedicos(){
+    this.isLoading = true;
+    this.medicosrv.getListMedicos().subscribe(resp => {
+      this.listMedicos = resp; 
+      this.isLoading = false;
+    });
+   }
+     
+   
     onAdd() { 
-      this.router.navigateByUrl('/add-medico');
+      this.router.navigateByUrl('dashboard/add-medico');
+    }
+   
+    onDelete(id:string) {  
+      messageDelete.delete.titulo =  messageDelete.delete.titulo + ' Médico'
+      messageDelete.delete.body =  messageDelete.delete.body + ' al  médico?'      
+      const dialogRef = this.dialog.open(DialogConfirmComponent, {
+        disableClose: false, width: '350px', data: messageDelete.delete
+      }); 
+      dialogRef.afterClosed().subscribe((resp: boolean) => { 
+        if(resp) this.medicosrv.delete(id)
+      });  
     }
    
   
     onUpdate(id: string){
-      this.router.navigateByUrl('/update/'+id);
+      this.router.navigateByUrl('dashboard/update/'+id);
     }
 
  }

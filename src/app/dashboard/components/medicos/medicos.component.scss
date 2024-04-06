@@ -1,11 +1,13 @@
 @import '../../../../assets/custom/breakpoints.scss';
  
-.registro{
-  display: grid;
-  align-items: center;
+.registro{ 
   overflow: auto;
- 
-  @include media-breakpoint('lt-md') {
+  padding: 20px; 
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  
+  @include media-breakpoint('lt-md') { 
     align-content: space-between;
   } 
 
@@ -21,29 +23,29 @@
     height: 2px;
   }
 
-  &__content{ 
+ 
+  &__titulo{ 
     margin: 3em;
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    display: flex; 
     gap: 2em;
     text-align: center; 
+    align-items: center;
+    @include media-breakpoint('lt-md') {
+      flex-direction: column;
+    } 
+      
   }
- 
-      .formulario{
-          
-        &__inputs{
-          display: flex;
-          flex-direction: column;
-          gap: 2em;
-        } 
-      }
 }
 
-.cabecera-gradiente{ 
+.pie-gradiente{ 
   display: flex;
   position: absolute;
   bottom: 0px;
+
+  @include media-breakpoint('lt-md') {
+    flex-direction: column;
+  } 
 }
   
 
@@ -52,9 +54,9 @@
   width: auto;
  
   @include media-breakpoint('lt-sm') {
-    padding: 2em; 
+    padding: 0em;
     overflow: auto;
-    display: flex; 
+    width: 350px;
   } 
 
 
@@ -83,11 +85,15 @@
   min-width: 80px;
 }
 
-.mat-column-email{
-  border-top-right-radius: 20px;
+
+.mat-column-accion{
+  width: 50px;
 }
 
-
+.mat-column-accion{
+  border-top-right-radius: 20px;
+}
+ 
 .mat-column-photo{
   border-top-left-radius: 20px;
 }
@@ -96,4 +102,22 @@
 mat-mdc-table, .mdc-data-table__table {
   border-radius: 20px; 
   background-color: transparent;
+}
+
+.botones{
+  display: flex;
+  gap: 10px;
+}
+
+.no-data{
+  margin: 3em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  height: 30vh;
+  border-radius: 15px;
+  border: solid 2px red;
+  padding: 50px;
 }

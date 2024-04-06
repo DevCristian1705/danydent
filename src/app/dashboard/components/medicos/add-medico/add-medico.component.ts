@@ -8,6 +8,10 @@ import { ButtonComponent } from '../../../../../shared/components/button/button.
 import { ReactiveFormDirective } from '../../../../../shared/directives/reactiveForm.directive';
 import { MedicosServices } from '../../../services/medicos.srv';
 import { GlobalService } from '../../../../../core/service/global';
+import { IMedico } from '../../../../../shared/interfaces/personas';
+import { PreloaderComponent } from '../../../../../shared/components/preloader/preloader.component';
+import { DialogConfirmComponent } from '../../../../../shared/dialog/dialog-confirm/dialog-confirm.component';
+import { messageDelete, messageType } from '../../../../../core/constants/message-type';
 
 @Component({
   selector: 'app-add-medico',
@@ -18,19 +22,23 @@ import { GlobalService } from '../../../../../core/service/global';
     ButtonComponent,
     ReactiveFormDirective,
     ReactiveFormsModule, 
-    CommonModule
+    CommonModule,
+    PreloaderComponent
   ],
   templateUrl: './add-medico.component.html',
   styleUrl: './add-medico.component.scss'
 })
 export class AddMedicoComponent {
+
   registerForm!: FormGroup; 
   loadingButton: boolean = false;
   numberInput = EInputValidation.Number; 
   listUser : any[] = [];
- 
+  idMedicoEdit : string = '';
+  isLoading : boolean = false;
+  
  get frmNameControl(): FormControl { return this.registerForm.get("names") as FormControl;}
- get frmLastNameControl(): FormControl { return this.registerForm.get("lastname") as FormControl;}
+ get frmLastNameControl(): FormControl { return this.registerForm.get("last_name") as FormControl;}
  get frmCellphoneControl(): FormControl { return this.registerForm.get("cellphone") as FormControl;}
  get frmEmailControl(): FormControl { return this.registerForm.get("email") as FormControl;}
  get frmPassControl(): FormControl { return this.registerForm.get("password") as FormControl;}
@@ -85,40 +93,73 @@ export class AddMedicoComponent {
      public router: Router, 
      private activatedRoute: ActivatedRoute,
    ) { 
- 
-    //LISTAR MEDICOS REGISTRADOS
-    this.medicosrv.getListMedicos().subscribe(resp => {
-      console.log('RESP',resp)
-    });
     //Ovtener id del medico para editar
-    const ID_MEDICO = this.activatedRoute.snapshot.paramMap.get('idMEdico');
-    console.log('ID_MEDICO', ID_MEDICO);
+    let id = this.activatedRoute.snapshot.paramMap.get('idMedico'); 
+    if (id != null) {
+      this.idMedicoEdit = id
+      this.onSetDatos();
+      this.isLoading = true;
+    }
+    this.onForm();
 
-  
-
-     const patronCorreo = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
- 
-     this.registerForm = this.fb.group({
-       id_medico: [ this.globalsrv.generateUniqueId('USER') , Validators.required], 
-       names: ['', [Validators.required, Validators.minLength(3)]],
-       lastname: ['', [Validators.required, Validators.minLength(3)]],
-       cellphone: ['', [Validators.required, Validators.minLength(3)]],
-       email: ['', [Validators.required, Validators.email, Validators.pattern(patronCorreo)]],
-     //  photo: ['', [Validators.required, Validators.minLength(8)]],
-     });
    }
   
    
-   async onAdd() { 
-     this.loadingButton = true;
-     const DATA_FORM = this.registerForm.value;  
-     const RESP =  await this.medicosrv.add(DATA_FORM) 
-     console.log('RESP',RESP)
-    }
+  onForm(){
+    const patronCorreo = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+    this.registerForm = this.fb.group({
+      id_medico: [ this.globalsrv.generateUniqueId('USER') , Validators.required], 
+      names: ['', [Validators.required, Validators.minLength(3)]],
+      last_name: ['', [Validators.required, Validators.minLength(3)]],
+      cellphone: ['', [Validators.required, Validators.minLength(3)]],
+      email: ['', [Validators.required, Validators.email, Validators.pattern(patronCorreo)]],
+    //  photo: ['', [Validators.required, Validators.minLength(8)]],
+    });
+  }
+  onAdd() { 
+    this.loadingButton = true;
+    const DATA_FORM = this.registerForm.value;  
+    this.medicosrv.add(DATA_FORM)  
+
+    messageType.registro.body =  messageType.registro.body + ' médicos';
+    const dialogRef = this.dialog.open(DialogConfirmComponent, {
+      disableClose: false, width: '350px', data: messageType.registro
+    }); 
+    dialogRef.afterClosed().subscribe((resp: boolean) => { 
+      if(resp){
+        this.loadingButton = false;
+        this.onForm()
+      }else{
+        setTimeout(() => {
+          this.onNavigate('dashboard/medicos')
+        }, 500);
+      } 
+    });  
+
    
+  }
+
+  onUpdate() { 
+    this.loadingButton = true;
+    const DATA_FORM = this.registerForm.value;  
+    this.medicosrv.update(this.idMedicoEdit, DATA_FORM)
+    setTimeout(() => {
+      this.onNavigate('dashboard/medicos')
+    }, 500);
+  }
   
-    onEdit(id: string){
-      this.router.navigateByUrl('/update/'+id);
-    }
+  onSetDatos() {
+    this.medicosrv.getMedico(this.idMedicoEdit)
+    .subscribe((resp: IMedico) => {
+      this.registerForm.patchValue(resp); 
+      this.isLoading = false;
+    })
+  }
+
+  onNavigate(url :string){
+    this.router.navigateByUrl(url)
+  }
+
  }
  

@@ -227,7 +227,7 @@ $color-red-hover : #d40808;
 .BottonIcon{     
     display: flex;
     justify-content: center;
-    padding: 9px 10px !important;
+    padding: 5px !important;
     cursor: pointer;
     @include styleButton(#ffffff, solid 1px $color-black-300);   
 }

@@ -3,15 +3,11 @@
 .MenuPrimary{
  
   .navigation  {
-      // position: fixed;
-      // left: 0%;
-      // text-align: 0;
-   //   background: linear-gradient(90.51deg, #640AB0 0.39%, #053296 138.52%);
-      background-image: linear-gradient(120deg, #040303 5%, #310751 50%);
-      // width: 230px;
-      // z-index: 3 !important; 
+     // background-image: linear-gradient(120deg, #040303 5%, #310751 50%);
+      background: #11113f;
       height: 100vh; 
-      padding-top: 2em;
+      padding: 10px;
+      padding-top: 3em;
       
       &__closed{ 
         text-align: right; 
@@ -24,29 +20,17 @@
       &__menu{
         display: flex;
         flex-direction: column;
-        gap: 0.5em;
-
+        gap: 2em;
+        margin-left: 1em;
+      
           .items-content{
-            margin-left: 1em;
-
+           
             &__item-menu{
               display: flex;
               align-items: center;
               gap: 0.5em; 
             }
-
-            &__submenu{ 
-              margin-left: 3em;
-
-              .submenu-items{
-                text-align: left;
-                display: flex;
-                flex-direction: column;
-                gap: 0.8em;
-                margin: 1em 0; 
-              }
-            }
-
+  
           } 
       }  
   }

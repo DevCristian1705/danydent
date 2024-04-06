@@ -33,7 +33,7 @@ export class InputComponent implements OnChanges {
   @Input() paste = true;
   @Input() msgError = ""; 
   @Input() width = '';
-  @Input() height = '48px';
+  @Input() height = '40px';
   @Input() icon = '';
   @Input() inputValidation!: EInputValidation;
   @Output() public valueChanged = new EventEmitter();

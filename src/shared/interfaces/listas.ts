@@ -4,21 +4,13 @@ export interface sideBarOptions {
     icon: string, 
     routerlink: string,
 }
-  
-
-export interface subMenuOptions {
-    code: number,
-    name: string, 
-    router : string
-}
-
+ 
 export interface menuOptions {
     code: number,
     name: string,
     icon: string,   
     alt_icon: string,   
-    router? : string,
-    subMenu: subMenuOptions[],
+    router? : string, 
 }
 
    

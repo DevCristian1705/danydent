@@ -1,11 +1,12 @@
 @import '../../../../../assets/custom/breakpoints.scss';
  
-.registro{
-  display: grid;
+.registro{ 
   align-items: center;
   overflow: auto;
   height: 100vh;
- 
+  display: flex;
+  flex-direction: column;
+  
   @include media-breakpoint('lt-md') {
     align-content: space-between;
   } 
@@ -23,12 +24,11 @@
   }
 
   &__content{ 
-    margin: 3em;
-    justify-content: center;
     display: flex;
     flex-direction: column;
     gap: 2em;
     text-align: center; 
+    min-width: 250px;
   }
  
       .formulario{

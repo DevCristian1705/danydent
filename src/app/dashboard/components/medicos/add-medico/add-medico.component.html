@@ -11,7 +11,12 @@
 
     <div class="registro__content">
         <div class="primary-bold-h2 color-black-300 ">
-            <span class="line-under-text">Re</span>gistrar Médico
+            <ng-container *ngIf="!idMedicoEdit; else editMedico">
+                <span class="line-under-text">Re</span>gistrar Médico
+             </ng-container> 
+             <ng-template #editMedico> 
+                <span class="line-under-text">Ac</span>tualizar Médico
+            </ng-template>
         </div>
     
         <form [formGroup]="registerForm">
@@ -19,8 +24,10 @@
     
                 <div class="formulario__inputs">
                     <app-input-library 
+                        autocomplete="off" 
                         typeInput="ClassicInput"
                         label="Nombres"
+                        [value]="frmNameControl.value"
                         idTextField="names" 
                         formControlName="names"
                         cbxReactiveForm 
@@ -32,8 +39,9 @@
                     <app-input-library 
                         typeInput="ClassicInput"
                         label="Apellidos"
-                        idTextField="lastname" 
-                        formControlName="lastname"
+                        idTextField="last_name" 
+                        [value]="frmLastNameControl.value"
+                        formControlName="last_name"
                         cbxReactiveForm 
                         [readOnly]="loadingButton"
                         [msgError]="getErrorLastName"
@@ -44,7 +52,8 @@
                     <app-input-library 
                         typeInput="ClassicInput"
                         label="Celular"
-                        idTextField="cellphone" 
+                        idTextField="cellphone"
+                        [value]="frmCellphoneControl.value" 
                         formControlName="cellphone"
                         cellphoneValidator
                         maxLength="9"
@@ -60,6 +69,7 @@
                         label="Correo electrónico"
                         idTextField="email"
                         maxLength="50"
+                        [value]="frmEmailControl.value" 
                         formControlName="email"
                         cbxReactiveForm
                         emailValidator
@@ -74,17 +84,16 @@
         
         <div class="mt-4">
             <app-button
-                (clicked)="onAdd()"
-                nombreBotton="Registrarme"
+                (clicked)="idMedicoEdit ? onUpdate() : onAdd()"
+                [nombreBotton]="idMedicoEdit ? 'Actualizar' : 'Registrarme'"
                 type="BottonPrimary"
-                size="xl"
+                size="md"
                 [loadingdButton]="loadingButton" 
                 [isDisabled]="registerForm.invalid">
             </app-button>
         </div>  
     </div>
- 
-    
+  
     <div class="cabecera-gradiente"style="overflow: hidden;">
         <svg preserveAspectRatio="none" viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg"
         style="fill: #2d39ad; width: 180%; height: 151px; transform: rotate(180deg);">
@@ -94,5 +103,7 @@
             opacity=".5" />
         <path d="M0 0v5.63C149.93 59 314.09 71.32 475.83 42.57c43-7.64 84.23-20.12 127.61-26.46 59-8.63 112.48 12.24 165.56 35.4C827.93 77.22 886 95.24 951.2 90c86.53-7 172.46-45.71 248.8-84.81V0z" />
         </svg>
-    </div>
+    </div> 
 </div>
+
+<app-preloader [isShow]="isLoading"></app-preloader>

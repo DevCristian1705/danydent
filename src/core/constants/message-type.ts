@@ -16,6 +16,16 @@ export const messageType = {
         nameBotonCancel: 'No',
         sizeButton: ''
     },  
+    registro:
+    {
+        titulo: 'Registro exitoso',
+        body: 'Deseas agregar más ',
+        icon: 'assets/iconos/icono-navbar.png',
+        nameBotonConfirm: 'Si, Agregar',
+        nameBotonCancel: 'No, ver lista',
+        sizeButton: ''
+    },  
+
 }
 
  
@@ -63,30 +73,12 @@ export const messageAuth = {
  
 
 export const messageDelete = {
-    delete_representante:
+    delete:
     {
-        titulo: 'Eliminar representante',
-        body: '¿Estás seguro de eliminar este representante?',
-        icon: 'assets/iconos/icono-navbar.png',
-        nameBotonConfirm: 'Si',
-        nameBotonCancel: 'No',
-        sizeButton: ''
-    }, 
-    delete_accionistas:
-    {
-        titulo: 'Eliminar accionista',
-        body: '¿Estás seguro de eliminar este accionista?',
-        icon: 'assets/iconos/icono-navbar.png',
-        nameBotonConfirm: 'Si',
-        nameBotonCancel: 'No',
-        sizeButton: ''
-    }, 
-    delete_accionistas_registrados:
-    {
-        titulo: 'Recuerda que',
-        body: ' Se borrarán los datos ingresados de cada accionista(s), ¿Estas seguro?',
-        icon: 'assets/iconos/icono-navbar.png',
-        nameBotonConfirm: 'Si',
+        titulo: 'Eliminar',
+        body: '¿Estás seguro de eliminar',
+        icon: 'assets/iconos/icon-delete.svg',
+        nameBotonConfirm: 'Si, Eliminar',
         nameBotonCancel: 'No',
         sizeButton: ''
     }, 

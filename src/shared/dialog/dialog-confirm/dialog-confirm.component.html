@@ -10,14 +10,14 @@
         </div>
         <div class="botones">
             <app-button
-                (click)="onAceptar(false)"
+                (click)="onAceptar(true)"
                 type="BottonLandingPrimary"
                 [size]="size"
                 [nombreBotton]="data.nameBotonConfirm" 
             ></app-button>
 
             <app-button
-                (click)="onAceptar(true)"
+                (click)="onAceptar(false)"
                 type="BottonLanding"
                 [size]="size"
                 [nombreBotton]="data.nameBotonCancel" 

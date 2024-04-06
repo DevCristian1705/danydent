@@ -1,7 +1,7 @@
 export interface IMedico {
     id_medico : number
     names :string,
-    last_name: string,
+    last_names: string,
     cellphone : number,
     email : string, 
     photo: string
