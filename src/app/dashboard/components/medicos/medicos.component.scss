@@ -42,24 +42,40 @@
   display: flex;
   position: absolute;
   bottom: 0px;
-
-  @include media-breakpoint('lt-md') {
-    flex-direction: column;
-  } 
 }
   
+.table-responsive{
+  display: none;
+  @include media-breakpoint('lt-md') {
+    display: flex; 
+    flex-direction: column;
+    gap: 1em; 
+
+    .card{ 
+      padding: 20px;
+      background: aqua;
+      border-radius: 15px;
+    }
+
+    .datos-medico{
+      display: block;
+    }
+
+    .others{
+      display: flex;
+      justify-content: space-around;
+      gap: 10px;
+    }
+  } 
+}
 
 .table{ 
   padding: 2em;
   width: auto;
  
   @include media-breakpoint('lt-sm') {
-    padding: 0em;
-    overflow: auto;
-    width: 350px;
-  } 
-
-
+    display: none;
+  }  
   th{
     background: #002ea1;
     text-align: center;
@@ -107,6 +123,9 @@ mat-mdc-table, .mdc-data-table__table {
 .botones{
   display: flex;
   gap: 10px;
+  @include media-breakpoint('lt-sm') {
+    justify-content: center;
+  }  
 }
 
 .no-data{

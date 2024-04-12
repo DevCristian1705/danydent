@@ -69,6 +69,42 @@
           <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
       </div>
+
+      <div class="table-responsive">
+        <div class="card font-secondary-regular-18" *ngFor="let medico of listMedicos">
+          <div class="datos-medico"> 
+            <div> Nombres : <b> {{medico.names}} </b> </div>
+            <div> Apellidos :  <b> {{medico.last_name}} </b> </div>
+          </div>
+
+          <div class="others">
+            <div>
+              <div> Celular :  <b> {{medico.cellphone}} </b>  </div>
+              <div> Email :  <b> {{medico.email}} </b>   </div>
+            </div>
+            <div class="foto">
+              <img [src]="medico.photo" alt="">
+            </div>
+          </div>
+ 
+          <div class="mt-4 botones">
+              <app-button
+                (clicked)="onDelete(medico.id_medico)"
+                urlimagen="../../../../assets/iconos/icon-delete.svg"
+                type="BottonIcon"
+                size="xl" >
+              </app-button>
+
+              <app-button
+                (clicked)="onUpdate(medico.id_medico)"
+                urlimagen="../../../../assets/iconos/icon-edit.svg"
+                type="BottonIcon"
+                size="xl" >
+              </app-button> 
+          </div> 
+          
+        </div>
+      </div>
     </ng-container>  
      
     <ng-template #noData> 

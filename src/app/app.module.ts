@@ -19,17 +19,17 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
   ],
 
   imports: [ 
-    CommonModule,
     AppRoutingModule,
-    BrowserModule, 
-    ReactiveFormsModule,
-    ReactiveFormDirective, 
-    HttpClientModule,  
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    TranslateModule.forRoot(),
+    BrowserModule, 
+    CommonModule,
+    HttpClientModule,  
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideAuth(() => getAuth()),
-    provideFirestore(() => getFirestore())
+    provideFirestore(() => getFirestore()),
+    ReactiveFormsModule,
+    ReactiveFormDirective, 
+    TranslateModule.forRoot(),
   ], 
   providers:[
     { provide: LocationStrategy, useClass: HashLocationStrategy },
