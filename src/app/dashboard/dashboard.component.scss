@@ -29,16 +29,16 @@
 
         .content{
         
-         overflow-y: auto;
+         overflow: scroll;
          background-color: white;
          border-radius: 15px 15px 0 0;
          display: flex;
          justify-content: center;
          align-items: center;
+         height: 100vh;
 
-         @include media-breakpoint('lt-md') {
-            height: 100vh;
-            display: block;
+         @include media-breakpoint('lt-md') { 
+            display: block; 
          }
        
 

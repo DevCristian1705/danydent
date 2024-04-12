@@ -56,11 +56,9 @@ export class MedicosComponent {
       this.router.navigateByUrl('dashboard/add-medico');
     }
    
-    onDelete(id:string) {  
-      messageDelete.delete.titulo =  messageDelete.delete.titulo + ' Médico'
-      messageDelete.delete.body =  messageDelete.delete.body + ' al  médico?'      
+    onDelete(id:string) {    
       const dialogRef = this.dialog.open(DialogConfirmComponent, {
-        disableClose: false, width: '350px', data: messageDelete.delete
+        disableClose: false, width: '350px', data: messageDelete.delete_medico
       }); 
       dialogRef.afterClosed().subscribe((resp: boolean) => { 
         if(resp) this.medicosrv.delete(id)

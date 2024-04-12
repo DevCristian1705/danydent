@@ -121,19 +121,16 @@ export class AddMedicoComponent {
     this.loadingButton = true;
     const DATA_FORM = this.registerForm.value;  
     this.medicosrv.add(DATA_FORM)  
-
-    messageType.registro.body =  messageType.registro.body + ' médicos';
+ 
     const dialogRef = this.dialog.open(DialogConfirmComponent, {
-      disableClose: false, width: '350px', data: messageType.registro
+      disableClose: false, width: '350px', data: messageType.registro_medico
     }); 
     dialogRef.afterClosed().subscribe((resp: boolean) => { 
       if(resp){
         this.loadingButton = false;
         this.onForm()
       }else{
-        setTimeout(() => {
-          this.onNavigate('dashboard/medicos')
-        }, 500);
+        setTimeout(() => this.onNavigate('dashboard/medicos'), 500);
       } 
     });  
 
@@ -144,9 +141,7 @@ export class AddMedicoComponent {
     this.loadingButton = true;
     const DATA_FORM = this.registerForm.value;  
     this.medicosrv.update(this.idMedicoEdit, DATA_FORM)
-    setTimeout(() => {
-      this.onNavigate('dashboard/medicos')
-    }, 500);
+    setTimeout(() => this.onNavigate('dashboard/medicos'), 500);
   }
   
   onSetDatos() {
@@ -161,5 +156,10 @@ export class AddMedicoComponent {
     this.router.navigateByUrl(url)
   }
 
+
+  onLoadPhoto(){
+    
+  }
+  
  }
  

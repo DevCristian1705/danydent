@@ -16,10 +16,10 @@ export const messageType = {
         nameBotonCancel: 'No',
         sizeButton: ''
     },  
-    registro:
+    registro_medico:
     {
         titulo: 'Registro exitoso',
-        body: 'Deseas agregar más ',
+        body: '¿Deseas agregar más Medicps? ',
         icon: 'assets/iconos/icono-navbar.png',
         nameBotonConfirm: 'Si, Agregar',
         nameBotonCancel: 'No, ver lista',
@@ -77,6 +77,15 @@ export const messageDelete = {
     {
         titulo: 'Eliminar',
         body: '¿Estás seguro de eliminar',
+        icon: 'assets/iconos/icon-delete.svg',
+        nameBotonConfirm: 'Si, Eliminar',
+        nameBotonCancel: 'No',
+        sizeButton: ''
+    }, 
+    delete_medico:
+    {
+        titulo: 'Eliminar Médico',
+        body: '¿Estás seguro de eliminar al Médico',
         icon: 'assets/iconos/icon-delete.svg',
         nameBotonConfirm: 'Si, Eliminar',
         nameBotonCancel: 'No',
