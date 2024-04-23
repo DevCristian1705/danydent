@@ -1,0 +1,27 @@
+@import '../../../../../assets/custom/breakpoints.scss';
+
+  .registro{
+    padding: 20px; 
+    text-align: center;  
+  }
+ 
+ .formulario{
+  padding: 20px;
+
+  &__inputs{
+    display: flex;
+    flex-direction: column;
+    gap: 1.2em;
+  } 
+ }       
+
+ .botones{
+   display: flex;
+   justify-content: center;
+   gap: 1em;
+
+   @include media-breakpoint("xs") { 
+     flex-direction: column;
+     gap: 0.5em;
+   } 
+ }

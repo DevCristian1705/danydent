@@ -2,7 +2,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router'; 
 import { GlobalService } from '../../../core/service/global';
 import { StorageService } from '../../../core/service/storage/storage.service';
-import { STORAGE_KEY } from '../../../core/constants/storage';
 import { CommonModule } from '@angular/common'; 
 import { ButtonComponent } from '../button/button.component'; 
 import { MenuComponent } from '../menu/menu.component';

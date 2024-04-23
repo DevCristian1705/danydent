@@ -16,8 +16,7 @@ export const ERROR_FIREBASE = {
 
 
 export const PATHS = {   
-  medicos: 'medicos',
-  pecientes: 'pecientes',
-  personas: 'personas'
+  medicos: 'medicos', 
+  personas: 'persona'
 }
  

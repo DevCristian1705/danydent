@@ -15,7 +15,7 @@ import { ButtonComponent } from '../../components/button/button.component';
 })
 export class DialogConfirmComponent {
   width = 'auto';
-   size = 'sm' ;
+  size = 'sm' ;
     
   constructor(
     public dialogRef: MatDialogRef<DialogConfirmComponent>,

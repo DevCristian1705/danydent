@@ -42,13 +42,8 @@ export class InputComponent implements OnChanges {
   @Input() typeInput: "ClassicInput" | "ClassicInputRegistroPass" | "ClassicInputPass" = "ClassicInput";
   @Input() loading = false;
   @Input() readOnly=false;
-  hasError = false; 
-  maxLimitLength = 60;
-  maxInputLength = this.maxLimitLength;
-  expression!: RegExp;
-  counter = 0;
-  total = 60;
-  hasIcon = false;
+  hasError = false;   
+  expression!: RegExp; 
   showPassword : boolean = false;  
 
   flgVerCaracteristicas: boolean = false; 
@@ -80,12 +75,7 @@ export class InputComponent implements OnChanges {
       this.hasError = false;
       this.classInput['error-input'] = this.hasError;
       this.classInput['text-input'] = !this.hasError;
-    } 
-    
-    if (this.icon != "") this.hasIcon = true;
-    else this.hasIcon = false; 
-    this.total = Number(this.maxLength);   
-    
+    }  
   }
  
   onChange(target: any) { 

@@ -1,0 +1,49 @@
+<!-- <ng-container [ngSwitch]="typeInputs">
+    <ng-container *ngSwitchCase="'ClassicInput'">  -->
+        <div class="ClassicInput" (click)="toggleDropdown()" >
+            <div class="input-container" [style.width]="width" >
+                <input
+                    type="text"
+                    id="username"
+                    [style.height]="height"
+                    [placeholder]="placeholder"
+                    [disabled]="disabled"
+                    [readonly]="readOnly"
+                    [value]="value"
+                    [ngClass]="classInput"
+                    (input)="onChange($event.target)"
+                    autocomplete="off"
+                    #cbxDropDownList >
+                <label for="username" class="label"> {{label}} </label>
+                <div class="arrow">
+                    <img src="assets/iconos/{{arrow}}.svg">
+                </div> 
+            </div> 
+            <div *ngIf="hasError" class="message-error"> {{msgError}} </div>
+            <ng-container [ngSwitch]="typeView">
+                <ng-container *ngSwitchCase="'LOADING'">
+                    <div class="wrapper-filter">
+                        <div class="empty">Cargando...</div>
+                    </div>
+                </ng-container>
+                <ng-container *ngSwitchCase="'EMPTY'">
+                    <div class="wrapper-filter">
+                        <div class="empty"></div>
+                    </div>
+                </ng-container>
+                <ng-container *ngSwitchCase="'FULL'">
+                    <div class="wrapper-list">
+                        <ng-container *ngFor="let item of data">
+                            <div class="wrapper-list__option"
+                                (click)="getElement(item)"
+                                (mousedown)="$event.preventDefault();" >
+                                {{item?.name}} 
+                            </div>
+                        </ng-container>
+                    </div>
+                </ng-container>
+                <ng-container *ngSwitchCase="'ERROR'"></ng-container>
+            </ng-container>
+        </div> 
+    <!-- </ng-container>
+</ng-container> -->

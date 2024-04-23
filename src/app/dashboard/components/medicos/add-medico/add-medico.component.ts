@@ -117,6 +117,7 @@ export class AddMedicoComponent {
     //  photo: ['', [Validators.required, Validators.minLength(8)]],
     });
   }
+  
   onAdd() { 
     this.loadingButton = true;
     const DATA_FORM = this.registerForm.value;  

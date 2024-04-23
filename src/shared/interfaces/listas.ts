@@ -59,3 +59,13 @@ export interface IEncuesta  {
     imagen : string;
 	opciones_respuesta : IRespuestas[] 
 }
+
+export interface ITiempoAlquiler  { 
+    code: number,  
+    name: string,
+}
+
+export interface IMedioPago { 
+    id: string,  
+    name: string,
+}

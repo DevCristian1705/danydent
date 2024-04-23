@@ -1,0 +1,80 @@
+<div class="registro">
+    <div class="primary-bold-h2 color-black-300 ">
+        <ng-container *ngIf="!data; else editPersona">
+            <span class="line-under-text">Re</span>gistrar
+         </ng-container> 
+         <ng-template #editPersona> 
+            <span class="line-under-text">Ac</span>tualizar
+        </ng-template>
+    </div>
+
+    <form [formGroup]="registerForm">
+        <div class="formulario font-secondary-regular-12">
+
+            <div class="formulario__inputs">
+                <app-input-library 
+                    autocomplete="off" 
+                    typeInput="ClassicInput"
+                    label="Nombres"
+                    [value]="frmNameControl.value"
+                    idTextField="names" 
+                    formControlName="names"
+                    cbxReactiveForm  
+                    [msgError]="getErrorName"
+                    [firstTouchedValue]="false">
+                </app-input-library>  
+ 
+
+                <dropdown-list-library
+                    typeInput="ClassicInput"
+                    label="Tiempo" 
+                    [readOnly]="true"
+                    [isMinutos]="true"
+                    [value]="frmTiempoControl.value"
+                    idTextField="idtiempo"
+                    formControlName="tiempo"
+                    [data]="listTiempoAlquiler"
+                    (dataValue)="getDataValue($event, 'Tiempo')"
+                    cbxReactiveForm
+                    [firstTouchedValue]="false"
+                    [msgError]="getErrorTiempo">
+                </dropdown-list-library>
+
+                <dropdown-list-library
+                    typeInput="ClassicInput"
+                    label="Tipo de Pago" 
+                    [readOnly]="true"
+                    [isMinutos]="false"
+                    [value]="frmTipoPagoControl.value"
+                    idTextField="id_tipo_pago"
+                    formControlName="tipo_pago"
+                    [data]="lisMedioPago"
+                    (dataValue)="getDataValue($event, 'Medio_de_Pago')"
+                    cbxReactiveForm
+                    [firstTouchedValue]="false"
+                    [msgError]="getErrorTipodePago">
+                </dropdown-list-library>
+
+                
+            </div> 
+        </div>  
+    </form> 
+
+    
+    <div class="mt-4 botones">
+        <app-button
+            (clicked)="data ? onUpdate() : onAdd()"
+            [nombreBotton]="data ? 'Actualizar' : 'Registrar'"
+            type="BottonLandingPrimary"
+            size="sm" 
+            [isDisabled]="registerForm.invalid">
+        </app-button>
+
+        <app-button
+            (clicked)="onClosed()"
+            nombreBotton="Cancelar"
+            type="BottonLanding"
+            size="sm">
+        </app-button>
+    </div>  
+</div>

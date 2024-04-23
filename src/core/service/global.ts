@@ -1,7 +1,7 @@
 
 import { Injectable } from "@angular/core"; 
 import { Observable,of } from "rxjs";
-import { IDatosDevelop, IDatosProfile, IEncuesta, IListExpLaboral, IListProyectos, sideBarOptions, NavbarOptions, menuOptions } from "./../../shared/interfaces/listas";
+import { IDatosDevelop, IDatosProfile, IEncuesta, IListExpLaboral, IListProyectos, sideBarOptions, NavbarOptions, menuOptions, ITiempoAlquiler, IMedioPago } from "./../../shared/interfaces/listas";
  
 
 @Injectable({
@@ -50,10 +50,10 @@ export class GlobalService {
     }, 
     {
       code: 5,
-      name: 'Citas',
-      router : '/dashboard/citas',
+      name: 'Personas',
+      router : '/dashboard/personas',
       icon: '../../../assets/iconos/icono-home.png',
-      alt_icon: 'icono dashboar'
+      alt_icon: 'icono persona'
     }, 
   ];
   //SIDEBAR
@@ -268,7 +268,40 @@ export class GlobalService {
       { opcion : 'C', respuesta: 'H2O', value : true, clase: 'resp--default' }] 
     },
   ]
+  //DATOS TIEMPO ALQUILER JUEGOS
+  private datosTiempoAlquiler: ITiempoAlquiler[] = [
+    { name : '5 minutos ', code: 5 }, 
+    { name : '10 minutos ',code: 10 }, 
+    { name : '15 minutos ',code: 15 }, 
+    { name : '20 minutos ',code: 20 }, 
+    { name : '30 minutos ',code: 30 }, 
+    { name : '45 minutos ',code: 45 }, 
+    { name : '60 minutos ',code: 60 }, 
+  ]
 
+    //DATOS MEDIOS DE PAGO
+    private datosMedioPago: IMedioPago[] = [
+      { 
+        id: '0', 
+        name: 'Efectivo'
+      }, 
+      { 
+        id: '1', 
+        name: 'Tarjeta'
+      }, 
+      { 
+        id: '2', 
+        name: 'Yape'
+      },  
+      { 
+        id: '3', 
+        name: 'Plim'
+      }, 
+      { 
+        id: '4', 
+        name: 'Otros'
+      }, 
+    ]
 
   onCopyCodeText(text: any) {
     navigator.clipboard.writeText(text)
@@ -281,8 +314,7 @@ export class GlobalService {
     let sideBarOptions: Observable<sideBarOptions[]> = of(this.sideBarOptions); 
     return sideBarOptions;
   }
-
-
+ 
   getMenu(): Observable<menuOptions[]> {
     let menuOptions: Observable<menuOptions[]> = of(this.menuOptions); 
     return menuOptions;
@@ -373,4 +405,14 @@ export class GlobalService {
     return prefix + '-' + randomBuffer;
   }
 
+
+  getTiempoAlquiler(): Observable<ITiempoAlquiler[]> {
+    let tiempoalquiler: Observable<ITiempoAlquiler[]> = of(this.datosTiempoAlquiler); 
+    return tiempoalquiler;
+  }
+
+  getMediosPago(): Observable<IMedioPago[]> {
+    let medioPago: Observable<IMedioPago[]> = of(this.datosMedioPago); 
+    return medioPago;
+  }
 } 
