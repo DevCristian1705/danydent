@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
 import { CommonModule } from '@angular/common';
@@ -29,7 +29,12 @@ export class PersonasComponent {
   displayedColumns: string[] = [ 'names','tiempo', 'tiempo_restante', 'accion'];
   isLoading: boolean = false;
   tiempo_restante: string = "";
- 
+  isShowReiniciar: boolean = true;
+
+  @HostListener('window:beforeunload', ['$event'])
+  onBeforeUnload(event: Event) { 
+    this.onReloadPage();
+  }
 
   constructor( 
     private personaSrv: PersonasServices,   
@@ -46,7 +51,7 @@ export class PersonasComponent {
   onLoadList(){
     this.isLoading = true;
     this.personaSrv.getListPersona().subscribe(resp => {
-      this.list = resp; 
+      this.list = resp.filter(item => item.isActive);   
       this.isLoading = false;
     });
    }
@@ -66,29 +71,118 @@ export class PersonasComponent {
     });  
   }
 
-  onInicilize(tiempo: number){ 
-    console.log('Tiempo terminado',tiempo);
-    const endTime = new Date();
-    endTime.setMinutes(endTime.getMinutes() + tiempo);
+  onReinciar(persona: IPersona){ 
+ 
+    const PERSONA = this.list.find((x) => x.id_persona === persona.id_persona)
+    let timeRestante
+    if (PERSONA) {
+      timeRestante = this.onGetNumbers(PERSONA.tiempo_restante);
+    }
+    const TIEMPO_A_FINALIZAR = new Date();
+    TIEMPO_A_FINALIZAR.setMinutes(TIEMPO_A_FINALIZAR.getMinutes() + timeRestante.minutos);
+    TIEMPO_A_FINALIZAR.setSeconds(TIEMPO_A_FINALIZAR.getSeconds() + timeRestante.segundos);
   
-    const interval = setInterval(() => {
-      const currentTime = new Date();
-      const diffInMinutes = Math.floor((endTime.getTime() - currentTime.getTime()) / 60000);
-      const diffInSeconds = Math.floor((endTime.getTime() - currentTime.getTime()) / 1000) % 60;
-  
-      if (diffInMinutes <= 0 && diffInSeconds <= 0) {
-        clearInterval(interval);
-        console.log('Tiempo terminado');
+    const INTERVAL = setInterval(() => {
+      const FECHA_ACTUAL = new Date();
+      const MINUTOS = Math.floor((TIEMPO_A_FINALIZAR.getTime() - FECHA_ACTUAL.getTime()) / 60000);
+      const SEGUNDOS = Math.floor((TIEMPO_A_FINALIZAR.getTime() - FECHA_ACTUAL.getTime()) / 1000) % 60;
+
+      //BUSCAMOS A LA PERSONA QUE LE CALCULAREMOS EL TIEMPO SEGUND SU ID_PERSONA
+    
+      //VALIDAMOS QUE HAYA TERMINADO SU TIEMPO
+      if (MINUTOS === 0 && SEGUNDOS === 0) {
+        clearInterval(INTERVAL);
+        if (PERSONA) {
+          PERSONA.tiempo_restante = 'termino'; 
+          PERSONA.isStatus = 'timeoff';
+          this.personaSrv.update(PERSONA.id_persona, persona);
+          this.onSound();
+        }
       } else {
-        this.tiempo_restante = `${diffInMinutes} min:${diffInSeconds} seg`;
+        if (MINUTOS > 0 || SEGUNDOS > 0) {
+          if (PERSONA) {
+            PERSONA.isStatus = 'processing';
+            PERSONA.tiempo_restante = `${MINUTOS} min:${SEGUNDOS} seg`;
+            this.personaSrv.update(PERSONA.id_persona, persona);
+            PERSONA.isReload = true;
+           // persona.tiempo_code = Number(MINUTOS + '.' + SEGUNDOS);
+          }
+        }
+      }
+    }, 100); // Update the countdown every 100 milliseconds
+  }
+
+  onInicilize(persona: IPersona){  
+    const TIEMPO_A_FINALIZAR = new Date();  
+      TIEMPO_A_FINALIZAR.setMinutes(TIEMPO_A_FINALIZAR.getMinutes() + persona.tiempo_code);
+    
+    const INTERVAL = setInterval(() => {
+      const FECHA_ACTUAL = new Date();
+      const MINUTOS = Math.floor((TIEMPO_A_FINALIZAR.getTime() - FECHA_ACTUAL.getTime()) / 60000);
+      const SEGUNDOS = Math.floor((TIEMPO_A_FINALIZAR.getTime() - FECHA_ACTUAL.getTime()) / 1000) % 60;
+      //BUSCAMOS A LA PERSONA QUE LE CALCULAREMOS EL TIEMPO SEGUND SU ID_PERSONA
+      const PERSONA = this.list.find((x) => x.id_persona ===  persona.id_persona)
+      //VALIDAMOS QUE HAYA TERMINADO SU TIEMPO
+      if (MINUTOS === 0 && SEGUNDOS === 0) {
+        clearInterval(INTERVAL); 
+        if(PERSONA) {
+          PERSONA.tiempo_restante = 'termino'
+          PERSONA.isStatus = 'timeoff';
+          this.personaSrv.update(PERSONA.id_persona, PERSONA);
+          this.onSound(); 
+        }
+      } else {
+        if (MINUTOS > 0 || SEGUNDOS > 0) {
+          if(PERSONA){
+            PERSONA.isStatus = 'processing'
+            PERSONA.tiempo_restante = `${MINUTOS} min:${SEGUNDOS} seg`;
+        //    PERSONA.tiempo_code = Number(MINUTOS + '.' + SEGUNDOS); 
+            this.personaSrv.update(PERSONA.id_persona, PERSONA);
+          } 
+        }  
       }
     }, 1000);
   }
 
+  onSound(){
+    const audio = new Audio();
+    audio.src = 'assets/sonidos/termina-juego.mp3';  
+    audio.load();
+    audio.play(); 
+
+    setTimeout(() => {
+      audio.pause();
+      audio.currentTime = 0;
+    }, 5000); // Stop the audio after 3 seconds 
+  }
+
+  onGetNumbers(lastTime : string): any{
+    let timeRestante
+    const regex = /(\d+) min:(\d+) seg/;
+    const match = regex.exec(lastTime);
+    if(match) {
+      timeRestante = {
+       minutos : Number(match[1]),
+       segundos :  Number(match[2])
+     }
+    }
+    return timeRestante || 0;
+  }
+
+  onReloadPage(){
+    this.list.forEach(element => { 
+      if (element.isStatus === "processing"){
+        element.isReload = false;
+      }
+      this.personaSrv.update(element.id_persona, element);
+    }); 
+  }
+  
   onFinish(data: IPersona){
     data.isActive = false;  
     this.personaSrv.update(data.id_persona, data);
   }
 
+ 
 
 }

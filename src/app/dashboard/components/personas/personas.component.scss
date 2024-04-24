@@ -58,6 +58,7 @@
       background: aqua;
       border-radius: 15px; 
  
+  
       @include media-breakpoint('lt-md') {
         display: flex; 
         gap: 2em;   
@@ -66,10 +67,23 @@
       }
 
       @include media-breakpoint('xs') {  
-        display: block; 
+        display: flex;
+        gap: 1em;
+        flex-direction: column;
+        align-items: normal;
       }
 
     }
+
+    .timeoff{
+      background-color: red;
+      color: white
+    }
+    .processing{
+      background-color: rgb(182, 255, 36);
+    }
+
+
 
     .datos-medico{
       display: block;
@@ -108,11 +122,12 @@
   }
 }
 
-.mat-column-names, 
-.mat-column-last_name, 
-.mat-column-cellphone,  
-.mat-column-email{
-  min-width: 80px;
+.mat-column-tiempo_restante{  
+  min-width: 150px;
+}
+
+.mat-column-names{  
+  min-width: 150px;
 }
 
 
@@ -120,13 +135,18 @@
   width: 50px;
 }
 
-.mat-column-accion{
-  border-top-right-radius: 20px;
+  
+
+.timeoff{
+  border-top-right-radius: 0px;
+  background-color: red !important;
+  color: white !important;
+}
+.processing{
+  border-top-right-radius: 0px;
+  background-color: rgb(182, 255, 36) !important;
 }
  
-.mat-column-photo{
-  border-top-left-radius: 20px;
-}
 
 
 mat-mdc-table, .mdc-data-table__table {

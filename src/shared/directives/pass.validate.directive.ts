@@ -1,8 +1,8 @@
 import { Directive, OnDestroy } from '@angular/core';
 import { AbstractControl, NG_VALIDATORS, Validator } from '@angular/forms'; 
 import { Subscription } from 'rxjs';
-import { tap } from 'rxjs/operators';
-import { GlobalService } from '../../app/shared/service/global';
+import { tap } from 'rxjs/operators'; 
+import { GlobalService } from '../../core/service/global';
  
 @Directive({
   selector: '[passValidator]',

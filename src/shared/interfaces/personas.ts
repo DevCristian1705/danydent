@@ -24,9 +24,12 @@ export interface IPersona {
     names :string,
     tiempo : string,
     tiempo_code : number,
+    tiempo_restante : string,
     tipo_pago: string
     document_number: number,
     isActive: boolean, 
+    isStatus : string,
+    isReload : boolean
 }
 
  

@@ -38,20 +38,31 @@
                 <div class="mt-4 botones">
 
                   <app-button
-                    (clicked)="onInicilize(element.tiempo_code)"
+                    *ngIf="element.tiempo_restante === '0'"
+                    (clicked)="onInicilize(element)"
                     nombreBotton="Iniciar"
                     type="BottonPrimary"
                     size="sm">
                   </app-button> 
                   
                   <app-button
+                    *ngIf="element.tiempo_restante === 'termino'"
                     (clicked)="onFinish(element)"
                     nombreBotton="Cerrar"
                     type="BottonLanding"
                     size="sm">
                   </app-button> 
-
+ 
                   <app-button
+                    *ngIf="element.isStatus === 'processing'"
+                    (clicked)="onReinciar(element)"
+                    nombreBotton="Reiniciar"
+                    type="BottonLanding"
+                    size="sm">
+                  </app-button> 
+                  
+                  <app-button
+                    *ngIf="element.tiempo_restante === '0'"
                     (clicked)="onUpdate(element)"
                     urlimagen="../../../../assets/iconos/icon-edit.svg"
                     type="BottonIcon"
@@ -63,33 +74,45 @@
           </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;" [class]="row.isStatus"></tr>
         </table>
       </div>
 
       <div class="table-responsive">
-        <div class="card font-secondary-regular-18" *ngFor="let persona of list">
+        <div class="card font-secondary-regular-18" [ngClass]="persona.isStatus" *ngFor="let persona of list">
           <div class="datos-medico"> 
             <div> Nombres : <b> {{persona.names}} </b> </div>
             <div> Tiempo :  <b> {{persona.tiempo}} </b> </div>
-            <div> Tiempo_restante :  <b> {{ tiempo_restante }} </b> </div> 
+            <div> Tiempo_restante :  <b> {{ persona.tiempo_restante }} </b> </div> 
           </div> 
           <div class="mt-4 botones">
               <app-button
-                (clicked)="onInicilize(persona.tiempo_code)"
+                *ngIf="persona.tiempo_restante === '0'"
+                (clicked)="onInicilize(persona)"
                 nombreBotton="Iniciar"
                 type="BottonPrimary"
                 size="sm">
               </app-button> 
 
               <app-button
-              (clicked)="onFinish(persona)"
+                *ngIf="persona.tiempo_restante === 'termino'"
+                (clicked)="onFinish(persona)"
                 nombreBotton="Cerrar"
                 type="BottonLanding"
                 size="sm">
               </app-button> 
+
+              <app-button 
+                *ngIf="persona.isStatus === 'processing'"
+                (clicked)="onReinciar(persona)"
+                nombreBotton="Reiniciar"
+                type="BottonLanding"
+                size="sm">
+              </app-button> 
+              
  
               <app-button
+                *ngIf="persona.tiempo_restante === '0'"
                 (clicked)="onUpdate(persona)"
                 urlimagen="../../../../assets/iconos/icon-edit.svg"
                 type="BottonIcon"

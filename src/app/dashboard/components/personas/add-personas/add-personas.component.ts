@@ -84,13 +84,17 @@ export class AddPersonasComponent {
    }
 
    onForm(){ 
-    this.registerForm = this.fb.group({ 
+    this.registerForm = this.fb.group({  
       names: ['', [Validators.required, Validators.minLength(3)]],
       tiempo: [Validators.required], 
       tiempo_code: [Validators.required], 
+      tiempo_restante: ['0'], 
       tipo_pago: [Validators.required], 
+      fecha: [new Date(), Validators.required], 
       document_number: ['', [Validators.minLength(3)]],
       isActive: [true],
+      isReload: [false],
+      isStatus: ['card'],
     });
   }
 
@@ -119,7 +123,7 @@ export class AddPersonasComponent {
 
   onUpdate(){
     const DATA_FORM = this.registerForm.value;  
-    this.personasrv.add(DATA_FORM);
+    this.personasrv.update(this.data.id_persona, DATA_FORM);
     this.dialogRef.close();
   }
 
